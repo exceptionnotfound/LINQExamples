@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FE4D3CD6-77C3-4410-BD56-CF6A26B01213}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LINQExamples.Lib</RootNamespace>
+    <AssemblyName>LINQExamples.Lib</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\StoreEmployee.cs" />
+    <Compile Include="Managers\TestManager.cs" />
+    <Compile Include="Model\Category.cs">
+      <DependentUpon>NorthwindEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Customer.cs">
+      <DependentUpon>NorthwindEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CustomerDemographic.cs">
+      <DependentUpon>NorthwindEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CustOrderHist_Result.cs">
+      <DependentUpon>NorthwindEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CustOrdersDetail_Result.cs">
+      <DependentUpon>NorthwindEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\CustOrdersOrders_Result.cs">
+      <DependentUpon>NorthwindEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Employee.cs">
+      <DependentUpon>NorthwindEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Employee_Sales_by_Country_Result.cs">
+      <DependentUpon>NorthwindEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\NorthwindEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NorthwindEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\NorthwindEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NorthwindEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\NorthwindEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NorthwindEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Order.cs">
+      <DependentUpon>NorthwindEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Order_Detail.cs">
+      <DependentUpon>NorthwindEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Product.cs">
+      <DependentUpon>NorthwindEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Region.cs">
+      <DependentUpon>NorthwindEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SalesByCategory_Result.cs">
+      <DependentUpon>NorthwindEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Sales_by_Year_Result.cs">
+      <DependentUpon>NorthwindEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Shipper.cs">
+      <DependentUpon>NorthwindEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Supplier.cs">
+      <DependentUpon>NorthwindEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Ten_Most_Expensive_Products_Result.cs">
+      <DependentUpon>NorthwindEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Territory.cs">
+      <DependentUpon>NorthwindEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="Model\NorthwindEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NorthwindEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\NorthwindEntities.edmx.diagram">
+      <DependentUpon>NorthwindEntities.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\NorthwindEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NorthwindEntities.edmx</DependentUpon>
+      <LastGenOutput>NorthwindEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\NorthwindEntities.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Model\NorthwindEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NorthwindEntities.edmx</DependentUpon>
+      <LastGenOutput>NorthwindEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\NorthwindEntities_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>NorthwindEntities.mdf</DependentUpon>
+    </Content>
+    <Content Include="NorthwindEntities.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NorthwindEntities_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>NorthwindEntities.mdf</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
