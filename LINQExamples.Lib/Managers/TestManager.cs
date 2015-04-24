@@ -16,7 +16,7 @@ namespace LINQExamples.Lib.Managers
         {
             List<StoreEmployee> members = new List<StoreEmployee>() {
                 new StoreEmployee() {FirstName = "Tony", LastName = "Jefferson", BirthDate = new DateTime(1955,9,25), JobTitle = "Store Manager", ID = 1},
-                new StoreEmployee() {FirstName = "Marcia", LastName = "Levinson", BirthDate = new DateTime(1998,3,1), JobTitle = "Produce Manager", ID = 2},
+                new StoreEmployee() {FirstName = "Marcia", LastName = "Levinson", BirthDate = new DateTime(1992,3,1), JobTitle = "Produce Manager", ID = 2},
                 new StoreEmployee() {FirstName = "Alex", LastName = "Gonzalez", BirthDate = new DateTime(1989,1,15), JobTitle = "Cashier", ID = 3},
                 new StoreEmployee() {FirstName = "Mikhail", LastName = "Severin", BirthDate = new DateTime(1977,4,28), JobTitle = "Stocking Manager", ID = 4},
                 new StoreEmployee() {FirstName = "Travis", LastName = "Ishikawa", BirthDate = new DateTime(1983,10,1), JobTitle = "Public Relations Specialist", ID = 5},
@@ -25,52 +25,52 @@ namespace LINQExamples.Lib.Managers
                 new StoreEmployee() {FirstName = "Esmail", LastName = "Salas", BirthDate = new DateTime(1997,5,31), JobTitle = "Lead Cashier", ID = 8}
             };
 
-            var results = from m in members
-                          where m.BirthDate < new DateTime(2010, 1, 1)
-                          select m;
+            var younguns = from m in members
+                           where m.BirthDate > new DateTime(1980, 1, 1)
+                           select m;
 
             
 
-            var complexWhereResults = from m in members
-                                      where m.BirthDate < new DateTime(2010, 1, 1) && m.JobTitle.Contains("Manager")
-                                      select m;
+            var youngManagers = from m in members
+                                where m.BirthDate > new DateTime(1980, 1, 1) && m.JobTitle.Contains("Manager")
+                                select m;
 
-            var orderByResults = from m in members
-                                 where m.BirthDate < new DateTime(2010, 1, 1) && m.JobTitle.Contains("Manager")
-                                 orderby m.BirthDate
-                                 select m;
+            var orderedYoungManagers = from m in members
+                                       where m.BirthDate < new DateTime(2010, 1, 1) && m.JobTitle.Contains("Manager")
+                                       orderby m.BirthDate
+                                       select m;
 
-            var orderByDescResults = from m in members
-                                     where m.BirthDate < new DateTime(2010, 1, 1) && m.JobTitle.Contains("Manager")
-                                     orderby m.BirthDate descending
-                                     select m;
+            var descendingYoungManagers = from m in members
+                                          where m.BirthDate < new DateTime(2010, 1, 1) && m.JobTitle.Contains("Manager")
+                                          orderby m.BirthDate descending
+                                          select m;
 
-            var orderByComplexResults = from m in members
-                                        where m.BirthDate < new DateTime(2010, 1, 1) && m.JobTitle.Contains("Manager")
-                                        orderby m.BirthDate descending, m.LastName
-                                        select m;
+            var complexOrderedManagers = from m in members
+                                         where m.BirthDate < new DateTime(2010, 1, 1) && m.JobTitle.Contains("Manager")
+                                         orderby m.BirthDate descending, m.LastName
+                                         select m;
 
             Console.WriteLine("Managers: ");
-            foreach(var manager in orderByComplexResults)
+            foreach (var manager in complexOrderedManagers)
             {
                 Console.WriteLine(manager.FirstName + " " + manager.LastName);
             }
             Console.WriteLine(Environment.NewLine);
 
 
-            var namesOnlyResults = from m in members
-                                   where m.BirthDate < new DateTime(2010, 1, 1)
-                                   select new { m.FirstName, m.LastName };
+            var namesOnlyYounguns = from m in members
+                                    where m.BirthDate > new DateTime(1980, 1, 1)
+                                    select new { m.FirstName, m.LastName };
 
-            Console.WriteLine("Seperate Names:");
-            foreach(var name in namesOnlyResults)
+                        Console.WriteLine("Seperate Names:");
+            foreach(var name in namesOnlyYounguns)
             {
                 Console.WriteLine("Name: " + name.FirstName + " " + name.LastName);
             }
             Console.WriteLine(Environment.NewLine);
 
             var renamedPropertiesResults = from m in members
-                                           where m.BirthDate < new DateTime(2010, 1, 1)
+                                           where m.BirthDate > new DateTime(1980, 1, 1)
                                            select new { m.FirstName, m.LastName, FullName = m.FirstName + " " + m.LastName, ID = m.ID };
 
             Console.WriteLine("Combined Names:");
@@ -109,8 +109,8 @@ namespace LINQExamples.Lib.Managers
             using(NorthwindEntities context = new NorthwindEntities())
             {
                 var products = from p in context.Products
-                               where p.UnitPrice < price
-                               select p;
+                                where p.UnitPrice < price
+                                select p;
 
                 var hasProducts = products.Any();
 
