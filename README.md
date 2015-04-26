@@ -4,7 +4,7 @@ _Just want the code? Download the sample project from [GitHub](https://github.co
 
 ## What is LINQ?
 
-LINQ stands for Language INtegrated Query, a feature of .NET that was released as part of version 3.5 way back in 2007\. It greatly improved the ability of C# and VB programmers to handle and parse data in business-level code.
+LINQ stands for Language INtegrated Query, a feature of .NET that was released as part of version 3.5 way back in 2007. It greatly improved the ability of C# and VB programmers to handle and parse data in business-level code.
 
 What LINQ does is **provide a syntax that allows business-level programmers to query sets of data** without needing to know any SQL.
 
@@ -12,7 +12,7 @@ Let's demo some really basic queries, and then we'll start seeing examples of mo
 
 We'll cover the following items in this tutorial (click on the links to jump to those sections):
 
-*   [Structure of a LINQ Query](http://www.exceptionnotfound.net/linq-for-beginners/#structureofalinqquery)
+*   [Structure of a LINQ Query](#what-is-linq)
 *   [Filtering](http://www.exceptionnotfound.net/linq-for-beginners/#filtering)
 *   [Ordering](http://www.exceptionnotfound.net/linq-for-beginners/#ordering)
 *   [Projections](http://www.exceptionnotfound.net/linq-for-beginners/#projections)
