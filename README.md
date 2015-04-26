@@ -330,3 +330,7 @@ All of these are just the tip of the iceberg as far as learning LINQ. If you wan
 That sample project includes a fully-functional command-line application which you can use to call many different LINQ examples. It also includes a copy of the Northwind database, so that you can see how LINQ-to-Entities works against real data.
 
 Happy Coding!
+
+## About
+
+Article wrote by @exceptionnotfound. Original can be found [here](http://www.exceptionnotfound.net/linq-for-beginners).
