@@ -12,19 +12,19 @@ Let's demo some really basic queries, and then we'll start seeing examples of mo
 
 We'll cover the following items in this tutorial (click on the links to jump to those sections):
 
-*   [Structure of a LINQ Query](#what-is-linq)
-*   [Filtering](http://www.exceptionnotfound.net/linq-for-beginners/#filtering)
-*   [Ordering](http://www.exceptionnotfound.net/linq-for-beginners/#ordering)
-*   [Projections](http://www.exceptionnotfound.net/linq-for-beginners/#projections)
-*   [LINQ-to-Entities](http://www.exceptionnotfound.net/linq-for-beginners/#linqtoentities)
-*   [Deferred Execution](http://www.exceptionnotfound.net/linq-for-beginners/#deferredexecution)
-*   [Aggregates](http://www.exceptionnotfound.net/linq-for-beginners/#aggregates)
-*   [Query and Method Syntaxes](http://www.exceptionnotfound.net/linq-for-beginners/#querysyntaxvsmethodsyntax)
-*   [Joins](http://www.exceptionnotfound.net/linq-for-beginners/#joins)
-*   [Grouping](http://www.exceptionnotfound.net/linq-for-beginners/#grouping)
-*   [Skip and Take](http://www.exceptionnotfound.net/linq-for-beginners/#skipandtake)
-*   [Working with Collections](http://www.exceptionnotfound.net/linq-for-beginners/#workingwithcollections)
-*   [Set Operations](http://www.exceptionnotfound.net/linq-for-beginners/#setoperations)
+*   [Structure of a LINQ Query](#structure-of-a-linq-query)
+*   [Filtering](#filtering)
+*   [Ordering](#ordering)
+*   [Projections](#projections)
+*   [LINQ-to-Entities](#linq-to-entities)
+*   [Deferred Execution](#deferred-execution)
+*   [Aggregates](#aggregates)
+*   [Query and Method Syntaxes](#query-and-syntaxes)
+*   [Joins](#joins)
+*   [Grouping](#grouping)
+*   [Skip and Take](#skip-and-take)
+*   [Working with Collections](#working-with-collections)
+*   [Set Operations](#set-operations)
 
 ### Structure of a LINQ Query
 
@@ -333,4 +333,5 @@ Happy Coding!
 
 ## About
 
-Article wrote by @exceptionnotfound. Original can be found [here](http://www.exceptionnotfound.net/linq-for-beginners).
+Article wrote by @exceptionnotfound.
+Original can be found [here](http://www.exceptionnotfound.net/linq-for-beginners).
