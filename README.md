@@ -45,16 +45,17 @@ In order to demonstrate this structure, we'll need a class and some test data.
         public int ID { get; set; }
     }
 
-    List<StoreEmployee> members = new List<StoreEmployee>() {  
-                new StoreEmployee() {FirstName = "Tony", LastName = "Jefferson", BirthDate = new DateTime(1955,9,25), JobTitle = "Store Manager", ID = 1},
-                new StoreEmployee() {FirstName = "Marcia", LastName = "Levinson", BirthDate = new DateTime(1992,3,1), JobTitle = "Produce Manager", ID = 2},
-                new StoreEmployee() {FirstName = "Alex", LastName = "Gonzalez", BirthDate = new DateTime(1989,1,15), JobTitle = "Cashier", ID = 3},
-                new StoreEmployee() {FirstName = "Mikhail", LastName = "Severin", BirthDate = new DateTime(1977,4,28), JobTitle = "Deli Manager", ID = 4},
-                new StoreEmployee() {FirstName = "Travis", LastName = "Ishikawa", BirthDate = new DateTime(1983,10,1), JobTitle = "Public Relations Specialist", ID = 5},
-                new StoreEmployee() {FirstName = "Grace", LastName = "Jones", BirthDate = new DateTime(1960,11,1), JobTitle = "Quality Control Specialist", ID = 6},
-                new StoreEmployee() {FirstName = "Leah", LastName = "Goldman", BirthDate = new DateTime(1997,1,1), JobTitle = "Cashier", ID = 7},
-                new StoreEmployee() {FirstName = "Esmail", LastName = "Salas", BirthDate = new DateTime(1997,5,31), JobTitle = "Lead Cashier", ID = 8}
-            };
+	List<StoreEmployee> members = new List<StoreEmployee>
+	{  
+    	new StoreEmployee { FirstName = "Tony", LastName = "Jefferson", BirthDate = new DateTime(1955,9,25), JobTitle = "Store Manager", ID = 1 },
+        new StoreEmployee { FirstName = "Marcia", LastName = "Levinson", BirthDate = new DateTime(1992,3,1), JobTitle = "Produce Manager", ID = 2 },
+        new StoreEmployee { FirstName = "Alex", LastName = "Gonzalez", BirthDate = new DateTime(1989,1,15), JobTitle = "Cashier", ID = 3 },
+        new StoreEmployee { FirstName = "Mikhail", LastName = "Severin", BirthDate = new DateTime(1977,4,28), JobTitle = "Deli Manager", ID = 4 },
+        new StoreEmployee { FirstName = "Travis", LastName = "Ishikawa", BirthDate = new DateTime(1983,10,1), JobTitle = "Public Relations Specialist", ID = 5 },
+        new StoreEmployee { FirstName = "Grace", LastName = "Jones", BirthDate = new DateTime(1960,11,1), JobTitle = "Quality Control Specialist", ID = 6 },
+        new StoreEmployee { FirstName = "Leah", LastName = "Goldman", BirthDate = new DateTime(1997,1,1), JobTitle = "Cashier", ID = 7 },
+        new StoreEmployee { FirstName = "Esmail", LastName = "Salas", BirthDate = new DateTime(1997,5,31), JobTitle = "Lead Cashier", ID = 8 }
+	};
 
 ### Filtering
 
@@ -149,9 +150,9 @@ One of the cool things about this idea is that we can actually modify the query 
                     
     customers = customers.Where(x => x.Country == "USA");   
 
-What we've done is simply added another WHERE constraint to the query, but because the query has not been executed yet no data has been retrieved, so the performance cost of making this change is minimal.
+What we've done is simply added another `WHERE` constraint to the query, but because the query has not been executed yet no data has been retrieved, so the performance cost of making this change is minimal.
 
-You can get the actual data by enumerating over the collection, using methods such as ToList() or a foreach loop:
+You can get the actual data by enumerating over the collection, using methods such as `ToList()` or a `foreach` loop:
 
     var customersList = customers.ToList();  
     ...
@@ -160,7 +161,7 @@ You can get the actual data by enumerating over the collection, using methods su
         Console.WriteLine("Customer: " + customer.ContactName);
     }
 
-There are also several other "conversion" methods such as ToArray().
+There are also several other "conversion" methods such as `ToArray()`.
 
 ### Aggregates
 
@@ -173,11 +174,11 @@ Let's say we have this query:
                        select p;
     }
 
-How can we know if we got any products back? We can use a method called Any():
+How can we know if we got any products back? We can use a method called `Any()`:
 
     var hasProducts = products.Any(); 
 
-Any() returns a boolean that represents whether the collection has any elements. It's much quicker than doing `Count() == 0` because Count() has to iterate over the entire collection, while Any() just checks for the first object in the collection.
+`Any()` returns a boolean that represents whether the collection has any elements. It's much quicker than doing `Count() == 0` because `Count()` has to iterate over the entire collection, while `Any()` just checks for the first object in the collection.
 
 There's also several other aggregates we can use:
 
@@ -185,19 +186,21 @@ There's also several other aggregates we can use:
     var totalPrice = products.Sum(x => x.UnitPrice);  
     Console.WriteLine("Total Price: $" + totalPrice.ToString());
 
-    var totalProducts = products.Count(); //Total number of products  
+    //Total number of products
+    var totalProducts = products.Count();
     Console.WriteLine("# of Products: " + totalProducts.ToString());
 
     // Total number of products where the unit price is greater than some comparison price
     var totalProductsWhere = products.Count(x => x.UnitPrice < price);
     Console.WriteLine("# of Products (Price < $" + price.ToString() + "): " + totalProductsWhere.ToString());
 
-    var maxPrice = products.Max(x => x.UnitPrice); //The maximum unit price in the set  
+    // The maximum unit price in the set
+    var maxPrice = products.Max(x => x.UnitPrice);  
     Console.WriteLine("Maximum Price: $" + maxPrice.ToString());  
 
 ### Query Syntax vs Method Syntax
 
-Notice that the Aggregate examples use methods Any(), Count(), and Max() rather then using the query structure (from x in y where z select x) we saw in the previous examples. In LINQ, there are two different syntaxes you can use to query for data: [query syntax and method syntax](https://msdn.microsoft.com/en-us/library/bb397947.aspx).
+Notice that the Aggregate examples use methods `Any()`, `Count()`, and `Max()` rather then using the query structure (`from x in y where z select x`) we saw in the previous examples. In LINQ, there are two different syntaxes you can use to query for data: [query syntax and method syntax](https://msdn.microsoft.com/en-us/library/bb397947.aspx).
 
 It is possible to do most things in either syntax, but certain things are much easier in one syntax or the other. For example, SQL-type operations such as joins or group by are much easier to write (and read) in query syntax than in method syntax. Be aware that **Query Syntax LINQ queries will be compiled down into method syntax.**
 
