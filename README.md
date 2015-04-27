@@ -63,15 +63,15 @@ Using this collection of Store Employees, we can start writing some simple LINQ 
 First, let's get the Store Employees who were born after 1980:
 
     var younguns = from m in members  
-               where m.BirthDate > new DateTime(1980, 1, 1)
-               select m;
+                where m.BirthDate > new DateTime(1980, 1, 1)
+                select m;
 
 What if we want people who were born after 1980 and have the word "Manager" in their title?
 
     var youngManagers = from m in members  
-                    where m.BirthDate > new DateTime(1980, 1, 1) 
-                        && m.JobTitle.Contains("Manager")
-                    select m;
+                        where m.BirthDate > new DateTime(1980, 1, 1) 
+                            && m.JobTitle.Contains("Manager")
+                        select m;
 
 As you can see, the structure of a basic LINQ query is pretty simple. What if we make it more complex?
 
@@ -88,26 +88,26 @@ You can order the results using the `orderby` keyword.
 You can also specify a descending order using the `descending` keyword:
 
     var descendingYoungManagers = from m in members  
-                              where m.BirthDate < new DateTime(2010, 1, 1) 
+                                where m.BirthDate < new DateTime(2010, 1, 1) 
                                   && m.JobTitle.Contains("Manager")
-                              orderby m.BirthDate descending
-                              select m;
+                                orderby m.BirthDate descending
+                                select m;
 
 You can also order by multiple fields, and `descending` can be applied to any of them:
 
     var complexOrderedManagers = from m in members  
-                             where m.BirthDate < new DateTime(2010, 1, 1) 
-                                 && m.JobTitle.Contains("Manager")
-                             orderby m.BirthDate descending, m.LastName
-                             select m;
+                                where m.BirthDate < new DateTime(2010, 1, 1) 
+                                    && m.JobTitle.Contains("Manager")
+                                orderby m.BirthDate descending, m.LastName
+                                select m;
 
 ### Projections
 
 We can also just get the properties of the object that we want, rather than the entire object. One way of doing this is by using an [anonymous type](https://msdn.microsoft.com/en-us/library/bb397696.aspx).
 
     var namesOnlyYounguns = from m in members  
-                        where m.BirthDate > new DateTime(1980, 1, 1)
-                        select new { m.FirstName, m.LastName };
+                            where m.BirthDate > new DateTime(1980, 1, 1)
+                            select new { m.FirstName, m.LastName };
 
 The nice thing about anonymous types is that we can still iterate over them.
 
@@ -143,10 +143,10 @@ This is due to an idea called **[deferred execution](https://msdn.microsoft.com/
 One of the cool things about this idea is that we can actually modify the query as an object:
 
     var customers = from c in context.Customers  
-                where c.ContactName.Contains("Mar")
-                orderby c.City, c.Country
-                select c;
-
+                    where c.ContactName.Contains("Mar")
+                    orderby c.City, c.Country
+                    select c;
+                    
     customers = customers.Where(x => x.Country == "USA");   
 
 What we've done is simply added another WHERE constraint to the query, but because the query has not been executed yet no data has been retrieved, so the performance cost of making this change is minimal.
@@ -166,7 +166,7 @@ There are also several other "conversion" methods such as ToArray().
 
 Let's say we have this query:
 
-    using(NorthwindEntities context = new NorthwindEntities())  
+    using (NorthwindEntities context = new NorthwindEntities())  
     {
         var products = from p in context.Products
                        where p.UnitPrice < price
@@ -181,13 +181,15 @@ Any() returns a boolean that represents whether the collection has any elements.
 
 There's also several other aggregates we can use:
 
-    var totalPrice = products.Sum(x => x.UnitPrice); //Sum the UnitPrice  
+    // Sum the UnitPrice
+    var totalPrice = products.Sum(x => x.UnitPrice);  
     Console.WriteLine("Total Price: $" + totalPrice.ToString());
 
     var totalProducts = products.Count(); //Total number of products  
     Console.WriteLine("# of Products: " + totalProducts.ToString());
 
-    var totalProductsWhere = products.Count(x => x.UnitPrice < price); //Total number of products where the unit price is greater than some comparison price  
+    // Total number of products where the unit price is greater than some comparison price
+    var totalProductsWhere = products.Count(x => x.UnitPrice < price);
     Console.WriteLine("# of Products (Price < $" + price.ToString() + "): " + totalProductsWhere.ToString());
 
     var maxPrice = products.Max(x => x.UnitPrice); //The maximum unit price in the set  
@@ -203,61 +205,62 @@ It is possible to do most things in either syntax, but certain things are much e
 
 Let's get some sample data for our Joins examples:
 
-    using(NorthwindEntities context = new NorthwindEntities())  
+    using (NorthwindEntities context = new NorthwindEntities())  
     {
-        string[] categoryNames = new string[]{  
-            "Beverages",   
-            "Condiments",   
-            "Vegetables",   
-            "Dairy Products",   
-            "Seafood" };
+		string[] categoryNames = {  
+        	"Beverages",   
+        	"Condiments",   
+        	"Vegetables",   
+        	"Dairy Products",   
+        	"Seafood"
+		};
     }
 
 Just like in SQL queries, we can do several types of joins:
 
     var products = from c in categoryNames  
-               join p in context.Products on c equals p.Category.CategoryName
-               select new { Category = c, p.ProductName }; //Cross Join
+                join p in context.Products on c equals p.Category.CategoryName
+                select new { Category = c, p.ProductName }; // Cross Join
 
 A [cross join](https://technet.microsoft.com/en-us/library/ms190690%28v=sql.105%29.aspx) is the result of combining every item from Set A (in our case, categoryNames) with every item from Set B (Products); the result is called a Cartesian product.
 
 However, cross joins are not often useful in real-world scenarios. The more useful kind of join is called a group join:
 
     var categories = from c in categoryNames  
-                 join p in context.Products on c equals p.Category.CategoryName into ps
-                 select new { Category = c, Products = ps }; //Group Join
+                    join p in context.Products on c equals p.Category.CategoryName into ps
+                    select new { Category = c, Products = ps }; // Group Join
 
-Notice the `into`keyword. That keyword takes the joined data and inserts it into a a new collection, in our case called ps.
+Notice the `into` keyword. That keyword takes the joined data and inserts it into a a new collection, in our case called ps.
 
 By the way, that same group join looks like this in method syntax:
 
     var categoriesMethod = categoryNames  
-                           .GroupJoin(
-                               context.Products,
-                               c => c,
-                               p => p.Category.CategoryName,
-                               (c, ps) =>
-                                   new
-                                   {
-                                       Category = c,
-                                       Products = ps
-                                   }
-                           );
+                            .GroupJoin(
+                                context.Products,
+                                c => c,
+                                p => p.Category.CategoryName,
+                                (c, ps) =>
+                                    new
+                                    {
+                                        Category = c,
+                                        Products = ps
+                                    }
+                            );
 
 We may also want a join called a left-outer join. A left outer join takes all elements from Set A and returns them, also returning elements from Set B if they match an element from Set A. Such a join looks like this:
 
     var leftOuterJoin = from c in context.Categories  
-                    join p in context.Products on c equals p.Category into ps
-                    from p in ps.DefaultIfEmpty()
-                    select new { Category = c, ProductName = p == null ? "(No products)" : p.ProductName };
+                        join p in context.Products on c equals p.Category into ps
+                        from p in ps.DefaultIfEmpty()
+                        select new { Category = c, ProductName = p == null ? "(No products)" : p.ProductName };
 
 ### Grouping
 
 Let's say that now, I want each categories, and I also want the products in each category. I'd accomplish this by performing a grouping, which looks like this:
 
     var groupedProducts = from p in context.Products  
-                      group p by p.Category.CategoryName into g
-                      select new { Category = g.Key, Products = g };
+                        group p by p.Category.CategoryName into g
+                        select new { Category = g.Key, Products = g };
 
 Notice that we're using the `into` keyword again. The result of this query is a list of Categories, each of which have a collection of Products associated to them. We could iterate over this (and print each category/product combo) like this:
 
@@ -286,32 +289,32 @@ Notice the chaining aspect of this syntax here: method syntax often ends up bein
 There are several methods we can use to manipulate or query collections:
 
     var categories = from c in context.Categories  
-                 where c.CategoryID > 3
-                 select c;
+                    where c.CategoryID > 3
+                    select c;
 
     var firstCategory = categories.First();
-
+ 
     var firstCategoryMatched = categories.First(x => x.CategoryName == "Produce");
 
     var firstCategoryDefault = categories.FirstOrDefault(x => x.CategoryName == "Nuts"); //returns null
 
     var singleCategoryMatched = categories.Single(x => x.CategoryName == "Produce");
 
-*   First() returns the first item in the collection (that matches the optional predicate) and throws an exception if it doesn't find one.
-*   FirstOrDefault() returns the first item that matches the predicate and returns null if no item is found.
-*   Single() returns the item in the collection that matches the predicate if there is one and only one item that matches; otherwise it throws an exception.
+*   `First()` returns the first item in the collection (that matches the optional predicate) and throws an exception if it doesn't find one.
+*   `FirstOrDefault()` returns the first item that matches the predicate and returns `null` if no item is found.
+*   `Single()` returns the item in the collection that matches the predicate if there is one and only one item that matches; otherwise it throws an exception.
 
 ### Set Operations
 
 We need some sample data for this next operation. Let's grab the first letters of all the Products, and the first letters of all the Customers.
 
     var productsFirstLetters = (from p in context.Products  
-                            select p.ProductName).ToList().Select(x => x[0]);
+                                select p.ProductName).ToList().Select(x => x[0]);
 
     var customersFirstLetters = (from c in context.Customers  
-                             select c.CompanyName).ToList().Select(x => x[0]);
+                                select c.CompanyName).ToList().Select(x => x[0]);
 
-There are three major set operations we can perform with these two sets of data: UNION, INTERSECT, and EXCEPT.
+There are three major set operations we can perform with these two sets of data: `UNION`, `INTERSECT`, and `EXCEPT`.
 
     var unionLetters = productsFirstLetters.Union(customersFirstLetters).OrderBy(x => x);
 
@@ -333,5 +336,6 @@ Happy Coding!
 
 ## About
 
-Article wrote by @exceptionnotfound.
-Original can be found [here](http://www.exceptionnotfound.net/linq-for-beginners).
+[Original article](http://www.exceptionnotfound.net/linq-for-beginners) wrote by @exceptionnotfound.
+
+Markdown port by @aloidg.
