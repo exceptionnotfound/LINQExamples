@@ -19,7 +19,7 @@ We'll cover the following items in this tutorial (click on the links to jump to 
 * [LINQ-to-Entities](#linq-to-entities)
 * [Deferred Execution](#deferred-execution)
 * [Aggregates](#aggregates)
-* [Query and Method Syntaxes](#query-and-syntaxes)
+* [Query and Method Syntaxes](#query-syntax-vs-method-syntax)
 * [Joins](#joins)
 * [Grouping](#grouping)
 * [Skip and Take](#skip-and-take)
@@ -101,7 +101,7 @@ var descendingYoungManagers = from m in members
                               where m.BirthDate < new DateTime(2010, 1, 1) 
                                 && m.JobTitle.Contains("Manager")
                               orderby m.BirthDate descending
-                                select m;
+                              select m;
 ```
 
 You can also order by multiple fields, and `descending` can be applied to any of them:
@@ -193,8 +193,8 @@ Let's say we have this query:
 using (NorthwindEntities context = new NorthwindEntities())  
 {
 	var products = from p in context.Products
-                 where p.UnitPrice < price
-                 select p;
+                   where p.UnitPrice < price
+                   select p;
 }
 ```
 
@@ -278,7 +278,7 @@ var categoriesMethod = categoryNames
                           c => c,
                           p => p.Category.CategoryName,
                           (c, ps) =>
-	                          new
+	                        new
                             {
                               Category = c,
                               Products = ps
